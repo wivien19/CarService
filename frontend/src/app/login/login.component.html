@@ -1,5 +1,16 @@
-<p>login works</p>
-<input type="text" [(ngModel)]="username" id="username">
-<input type="password"[(ngModel)]="password" id="password">
-<button (click)="login()">Login</button>
-<a [routerLink]="['/home']" >Home</a>
+
+<form class="example-form">
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>User Name</mat-label>
+    <input matInput placeholder="Enter your name" name="usename"
+           [(ngModel)] ="username">
+  </mat-form-field>
+  <br>
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Password</mat-label>
+    <input matInput placeholder="Enter your password" value="" name="password" type="password" [(ngModel)]= "password">
+  </mat-form-field>
+  <br>
+  <button mat-raised-button color="primary" (click)="login()">Submit</button>
+</form>
+

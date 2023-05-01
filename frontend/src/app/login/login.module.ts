@@ -10,6 +10,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { HttpClientModule } from '@angular/common/http';
 import {RouterLink} from "@angular/router";
+import {NavbarComponent} from "../navbar/navbar.component";
+import {NavbarModule} from "../navbar/navbar.module";
+
 
 
 
@@ -30,7 +33,8 @@ import {RouterLink} from "@angular/router";
     MatButtonModule,
     MatIconModule,
     HttpClientModule,
-    RouterLink
+    RouterLink,
+    NavbarModule
   ]
 })
 export class LoginModule { }
