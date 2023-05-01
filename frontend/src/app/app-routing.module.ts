@@ -20,7 +20,7 @@ const routes: Routes = [
     path: 'repair', component : RepairServicesComponent
   },
   {
-    path: 'logout', redirectTo: 'home', pathMatch: "full"
+    path: 'logout', redirectTo: 'login', pathMatch: "full"
   }
 ];
 

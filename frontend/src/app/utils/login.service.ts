@@ -10,11 +10,11 @@ export class LoginService {
 
   }
   login(username: string, password: string){
-    return this.http.post('http://localhost:3000/login', {
+    return this.http.post('http://localhost:4200/server/login', {
       username : username, password : password
     }, {responseType : 'text'});
   }
   logout(){
-    return this.http.post('http://localhost:3000/logout', {}, {withCredentials: true, responseType : 'text'});
+    return this.http.post('http://localhost:4200/server/logout', {}, {withCredentials: true, responseType : 'text'});
   }
 }
