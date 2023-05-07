@@ -9,15 +9,15 @@ const carModel = mongoose.model('car');
 router.route('/login').post((req, res, next) => {
     if (req.body.username, req.body.password) {
         passport.authenticate('local', function (error, user) {
-            if (error){
-                return res.status(500).send( error);
+            if (error) {
+                return res.status(500).send(error);
             }
-            req.logIn(user, function (error){
+            req.logIn(user, function (error) {
                 if (error) {
-                    return  res.status(500).send( error);
+                    return res.status(500).send(error);
                 }
 
-                return  res.status(200).send('sikeres bejelentkezes');
+                return res.status(200).send('sikeres bejelentkezes');
             });
         })(req, res);
     } else {
@@ -28,7 +28,7 @@ router.route('/logout').post((req, res, next) => {
 
     if (req.isAuthenticated()) {
         req.logout((err) => {
-            if(err) {
+            if (err) {
                 return res.status(500).send(err)
             }
             return res.status(200).send('Kijelentkezes sikeres');
@@ -39,9 +39,9 @@ router.route('/logout').post((req, res, next) => {
 })
 
 
-router.route('/status').get((req,res, next)=>{
-    if (req.isAuthenticated()){
-        return res.status(200).send(req.session.passport);
+router.route('/status').get((req, res, next) => {
+    if (req.isAuthenticated()) {
+        return res.status(200).send(req.user);
     } else {
         return res.status(403).send('nem is volt bejelentkezve');
     }
@@ -86,7 +86,7 @@ router.route('/user').get((req, res, next) => {
 
 router.route('/car'
 ).get((req, res, next) => {
-   carModel.find({}, (err, examples) => {
+    carModel.find({}, (err, examples) => {
         res.status(200).send(examples);
     });
 }).post((req, res, next) => {
@@ -101,9 +101,9 @@ router.route('/car'
                 const car = new carModel(
                     {
                         name: req.body.name,
-                        type : req.body.type,
-                        price : req.body.price,
-                        description : req.body.description
+                        type: req.body.type,
+                        price: req.body.price,
+                        description: req.body.description
                     }
                 );
                 car.save((error) => {
@@ -170,11 +170,21 @@ router.get('/car/:id', async (req, res) => {
     try {
         const car = await carModel.findById(req.params.id);
         if (!car) {
-            return res.status(404).json({ message: 'Car service not found' });
+            return res.status(404).json({message: 'Car service not found'});
         }
         res.json(car);
     } catch (error) {
-        res.status(500).json({ message: error.message });
+        res.status(500).json({message: error.message});
+    }
+});
+
+router.get('/user/:username', async (req, res) => {
+    try {
+        userModel.find({username: req.params.username}, function (err, course) {
+            res.json(course);
+        });
+    } catch (error) {
+        res.status(500).json({message: error.message});
     }
 });
 

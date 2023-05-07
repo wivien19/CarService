@@ -1,0 +1,24 @@
+<form class="example-form">
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Service name</mat-label>
+    <input matInput placeholder="Enter the service name" name="name"
+           [(ngModel)] ="name">
+  </mat-form-field>
+  <br>
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Type</mat-label>
+    <input matInput placeholder="Enter the type" value="" name="type" type="text" [(ngModel)]= "type">
+  </mat-form-field>
+  <br>
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Price</mat-label>
+    <input matInput placeholder="Enter the price" name="price" type="number" [(ngModel)]= "price">
+  </mat-form-field>
+  <br>
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Description</mat-label>
+    <input matInput placeholder="Enter the description" value="" name="description" type="text" [(ngModel)]= "description">
+  </mat-form-field>
+  <br>
+  <button mat-raised-button color="primary" (click)="addProduct()">Submit</button>
+</form>

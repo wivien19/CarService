@@ -19,6 +19,10 @@ export class LoginService {
       username : username, email: email, password : password
     }, {responseType : 'text'});
   }
+
+  getUser(name : string){
+    return this.http.get(`http://localhost:4200/server/user/${name}`, {withCredentials: true});
+  }
   logout(){
     return this.http.post('http://localhost:4200/server/logout', {}, {withCredentials: true, responseType : 'text'});
   }

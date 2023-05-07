@@ -18,6 +18,9 @@ import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
 import { RepairDetailsComponent } from './repair-details/repair-details.component';
+import { AddServiceComponent } from './add-service/add-service.component';
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatInputModule} from "@angular/material/input";
 
 
 @NgModule({
@@ -25,7 +28,8 @@ import { RepairDetailsComponent } from './repair-details/repair-details.componen
     AppComponent,
     HomeComponent,
     NavbarComponent,
-    RepairDetailsComponent
+    RepairDetailsComponent,
+    AddServiceComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +42,9 @@ import { RepairDetailsComponent } from './repair-details/repair-details.componen
     RepairServicesModule,
     MatToolbarModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   providers: [],
   exports: [

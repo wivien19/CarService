@@ -17,6 +17,11 @@ export class CarService {
     return this.http.get(`http://localhost:4200/server/car/${id}`, {
     });
   }
+  pushCar(name : string, type: string, price:number, description: string){
+    return this.http.post('http://localhost:4200/server/car', {
+      name : name, type: type, price : price, description : description
+    }, {responseType : 'text'});
+  }
   logout(){
     return this.http.post('http://localhost:4200/server/logout', {}, {withCredentials: true, responseType : 'text'});
   }
