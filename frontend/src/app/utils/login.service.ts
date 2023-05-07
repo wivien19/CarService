@@ -10,20 +10,20 @@ export class LoginService {
 
   }
   login(username: string, password: string){
-    return this.http.post('http://localhost:4200/server/login', {
+    return this.http.post('http://localhost:3000/login', {
       username : username, password : password
     }, {responseType : 'text'});
   }
   registration(username: string, email:string, password: string){
-    return this.http.post('http://localhost:4200/server/user', {
+    return this.http.post('http://localhost:3000/user', {
       username : username, email: email, password : password
     }, {responseType : 'text'});
   }
 
   getUser(name : string){
-    return this.http.get(`http://localhost:4200/server/user/${name}`, {withCredentials: true});
+    return this.http.get(`http://localhost:3000/user/${name}`, {withCredentials: true});
   }
   logout(){
-    return this.http.post('http://localhost:4200/server/logout', {}, {withCredentials: true, responseType : 'text'});
+    return this.http.post('http://localhost:3000/logout', {}, {withCredentials: true, responseType : 'text'});
   }
 }

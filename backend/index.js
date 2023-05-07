@@ -4,10 +4,11 @@ const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const path = require('path');
 const passport = require('passport');
 const localStrategy = require('passport-local').Strategy;
 const expressSession = require('express-session');
-const dbUrl = 'mongodb://127.0.0.1:27017/mongo_db_car';
+const dbUrl = 'mongodb://127.0.0.1:27017/mongo_db_car_j4vdge';
 
 const app = express();
 mongoose.connect(dbUrl);
@@ -50,12 +51,6 @@ app.use(expressSession({secret: 'prf2023', resave: true}));
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.get('/', (req, res, next) => {
-        res.send('hello world')
-        // console.log('a hello world route ')
-        // next();
-    }
-);
 
 passport.serializeUser(function (user, done){
     if (!user){
@@ -73,12 +68,15 @@ passport.deserializeUser(function (user, done){
 
 app.use('/', require('./routes'));
 app.use('/secondary', require('./routes'))
+app.use(express.static(path.join(__dirname,'public')))
+    .set('views', path.join(__dirname, 'views'))
+    .set('view engine', 'ejs')
+    .get('/', (req,res)=>res.render('pages/'))
 
 app.use((req, res, next) => {
     console.log('ez a hibakezelo a legvegen');
     res.status(404).send('a kert eroforras nem talalhato');
 })
-
 
 app.listen(port, () => {
     console.log('A szerverem fut');
