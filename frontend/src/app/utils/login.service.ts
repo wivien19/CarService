@@ -14,6 +14,11 @@ export class LoginService {
       username : username, password : password
     }, {responseType : 'text'});
   }
+  registration(username: string, email:string, password: string){
+    return this.http.post('http://localhost:4200/server/user', {
+      username : username, email: email, password : password
+    }, {responseType : 'text'});
+  }
   logout(){
     return this.http.post('http://localhost:4200/server/logout', {}, {withCredentials: true, responseType : 'text'});
   }

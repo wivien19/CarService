@@ -1,1 +1,18 @@
 <p>repair-services works!</p>
+<table>
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Type</th>
+    <th>Price0</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let car of cars">
+    <td>{{car.name}}</td>
+    <td>{{car.type}}</td>
+    <td>{{car.price}}</td>
+
+  </tr>
+  </tbody>
+</table>

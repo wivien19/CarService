@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const passport = require('passport');
 const exampleModel = mongoose.model('example');
 const userModel = mongoose.model('user');
+const carModel = mongoose.model('car');
 
 router.route('/login').post((req, res, next) => {
     if (req.body.username, req.body.password) {
@@ -83,24 +84,29 @@ router.route('/user').get((req, res, next) => {
 );
 
 
-router.route('/example'
+router.route('/car'
 ).get((req, res, next) => {
-    exampleModel.find({}, (err, examples) => {
+   carModel.find({}, (err, examples) => {
         res.status(200).send(examples);
     });
 }).post((req, res, next) => {
-    if (req.body.id && req.body.value) {
-        exampleModel.findOne({id: req.body.id}, (err, example) => {
+    if (req.body.name) {
+        carModel.findOne({name: req.body.name}, (err, example) => {
             if (err) {
                 res.status(500).send('DB hiba tortent :c');
             }
             if (example) {
                 res.status(400).send('van már ilyen id');
             } else {
-                const example = new exampleModel(
-                    {id: req.body.id, value: req.body.value}
+                const car = new carModel(
+                    {
+                        name: req.body.name,
+                        type : req.body.type,
+                        price : req.body.price,
+                        description : req.body.description
+                    }
                 );
-                example.save((error) => {
+                car.save((error) => {
                     if (error) {
                         return res.status(500).send('A mentes soran hiba tortent');
                     }
@@ -114,13 +120,16 @@ router.route('/example'
     }
 
 }).put((req, res, next) => {
-    if (req.body.id && req.body.value) {
-        exampleModel.findOne({id: req.body.id}, (err, example) => {
+    if (req.body.name) {
+        carModel.findOne({name: req.body.name}, (err, example) => {
             if (err) {
                 res.status(500).send('DB hiba tortent :c');
             }
             if (example) {
-                example.value = req.body.value;
+                example.name = req.body.name;
+                example.type = req.body.type;
+                example.price = req.body.price;
+                example.description = req.body.description;
                 example.save((error) => {
                     if (error) {
                         return res.status(400).send('Nincs ilyen id aza adatbazisban');
@@ -137,8 +146,8 @@ router.route('/example'
     }
 
 }).delete((req, res, next) => {
-    if (req.body.id) {
-        exampleModel.findOne({id: req.body.id}, (err, example) => {
+    if (req.body.name) {
+        carModel.findOne({name: req.body.name}, (err, example) => {
             if (err) {
                 res.status(500).send('DB hiba tortent :c');
             }

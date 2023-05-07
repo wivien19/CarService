@@ -23,15 +23,38 @@
 //   }
 //
 // }
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {LoginService} from "../utils/login.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
   styleUrls: ['./registration.component.css']
 })
-export class RegistrationComponent {
+export class RegistrationComponent implements OnInit{
+  username: string;
+  password: string;
+  email : string;
+
+  constructor(private loginService: LoginService, private router : Router) {
+    this.username = '';
+    this.password = '';
+    this.email = '';
+  }
   register() {
+    if (this.username != '' && this.password != '') {
+      this.loginService.registration(this.username,this.email, this.password).subscribe(msg => {
+        console.log(msg);
+       // localStorage.setItem('user', this.username);
+        this.router.navigate(['/login']);
+      }, error => {
+        console.log(error);
+      })
+    }
     // handle registration form submission
+  }
+
+  ngOnInit(): void {
   }
 }
