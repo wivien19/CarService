@@ -17,13 +17,15 @@ import { NavbarComponent } from './navbar/navbar.component';
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
+import { RepairDetailsComponent } from './repair-details/repair-details.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    NavbarComponent
+    NavbarComponent,
+    RepairDetailsComponent
   ],
   imports: [
     BrowserModule,

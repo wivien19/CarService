@@ -4,6 +4,8 @@ import {HomeComponent} from "./home/home.component";
 import {LoginComponent} from "./login/login.component";
 import {RegistrationComponent} from "./registration/registration.component";
 import {RepairServicesComponent} from "./repair-services/repair-services.component";
+import {AuthGuard} from "./guards/auth.guard";
+import {RepairDetailsComponent} from "./repair-details/repair-details.component";
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: "full"},
@@ -17,7 +19,10 @@ const routes: Routes = [
     path: 'register', component : RegistrationComponent
   },
   {
-    path: 'repair', component : RepairServicesComponent
+    path: 'repair', component : RepairServicesComponent, canActivate:[AuthGuard]
+  },
+  {
+    path: 'repair/:id', component : RepairDetailsComponent, canActivate:[AuthGuard]
   },
   {
     path: 'logout', redirectTo: 'login', pathMatch: "full"

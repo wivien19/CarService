@@ -21,6 +21,7 @@ mongoose.connection.on('error', ()=>{
 require('./example.model')
 require('./user.model')
 require('./car.model')
+require('./bootstrapper')();
 const userModel = mongoose.model('user');
 
 app.use(cookieParser());

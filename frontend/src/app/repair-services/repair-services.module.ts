@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RepairServicesComponent } from './repair-services.component';
+import {MatButtonModule} from "@angular/material/button";
+import {RouterLink} from "@angular/router";
 
 
 
@@ -12,7 +14,9 @@ import { RepairServicesComponent } from './repair-services.component';
         RepairServicesComponent
     ],
     imports: [
-        CommonModule
+        CommonModule,
+        MatButtonModule,
+        RouterLink
     ]
 })
 export class RepairServicesModule { }

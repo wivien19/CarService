@@ -166,6 +166,17 @@ router.route('/car'
         return res.status(400).send('nem volt id vagy value');
     }
 })
+router.get('/car/:id', async (req, res) => {
+    try {
+        const car = await carModel.findById(req.params.id);
+        if (!car) {
+            return res.status(404).json({ message: 'Car service not found' });
+        }
+        res.json(car);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+});
 
 module.exports = router;
 
