@@ -22,6 +22,10 @@ export class CarService {
       name : name, type: type, price : price, description : description
     }, {responseType : 'text'});
   }
+  deleteCar(name: string){
+    return this.http.delete(`http://localhost:4200/server/car/${name}`, {
+    });
+  }
   logout(){
     return this.http.post('http://localhost:4200/server/logout', {}, {withCredentials: true, responseType : 'text'});
   }

@@ -14,6 +14,7 @@ export class RepairServicesComponent implements OnInit {
   type: string;
   price: number;
   description: string;
+  access : number;
 
   cars?: any
   constructor( private router : Router, private carservice:CarService) {
@@ -21,11 +22,28 @@ export class RepairServicesComponent implements OnInit {
     this.type = '';
     this.price = 0;
     this.description= '';
+    this.access = 1;
+  }
+
+  deleteCar(name : string){
+    //onsole.log(name);
+
+    this.carservice.deleteCar(name).subscribe(msg => {
+      console.log(msg);
+      this.router.navigate(['/home']);
+    }, error => {
+      console.log(error);
+    })
+
   }
 
 
   ngOnInit(): void {
     console.log("oninit");
+    const access = localStorage.getItem('accessLevel');
+    if (access){
+      this.access = ( parseInt(access));
+    }
 
       this.carservice.getCars().subscribe(msg => {
         console.log(msg);

@@ -13,7 +13,7 @@
     <td>{{car.type}}</td>
     <td>{{car.price}}</td>
     <td><a  mat-raised-button color="secondary" routerLink="/repair/{{car._id}}">Go to the details</a></td>
-
+    <td *ngIf="access == 3" ><button  mat-raised-button color="secondary" (click)="deleteCar(car.name)">Delete</button></td>
   </tr>
   </tbody>
 </table>

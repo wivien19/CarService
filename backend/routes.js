@@ -187,6 +187,27 @@ router.get('/user/:username', async (req, res) => {
         res.status(500).json({message: error.message});
     }
 });
+async function getCar(req, res, next) {
+    try {
+        car = await carModel.find({name: req.params.name});
+        if (car == null) {
+            return res.status(404).json({ message: 'A tárgy nem található' });
+        }
+    } catch (error) {
+        return res.status(500).json({ message: error.message });
+    }
+
+    res.car = car;
+    next();
+}
+router.delete('/car/:name', getCar, async (req, res) => {
+    try {
+        await res.car[0].remove();
+        res.json({ message: 'A tárgy sikeresen törölve!' });
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+});
 
 module.exports = router;
 

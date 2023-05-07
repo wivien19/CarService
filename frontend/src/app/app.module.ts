@@ -21,6 +21,7 @@ import { RepairDetailsComponent } from './repair-details/repair-details.componen
 import { AddServiceComponent } from './add-service/add-service.component';
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
+import { AboutComponent } from './about/about.component';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import {MatInputModule} from "@angular/material/input";
     HomeComponent,
     NavbarComponent,
     RepairDetailsComponent,
-    AddServiceComponent
+    AddServiceComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,
